@@ -1,0 +1,47 @@
+import { Link } from "react-router-dom";
+import Navbar from '../Components/navbar.jsx';
+import axios from "axios";
+function Dashboard() {
+    const [enrollCourses,setEnrollCourses] = useState([]);
+    const [teachCourses,setTeachCourses] = useState([]);
+
+    useEffect(() => {
+        getCourses();
+    }, [teachCourses]);
+
+    const getCourses = async () => {
+        try {
+            const token = JSON.parse(localStorage.getItem("token"));
+            const response = await axios.get("http://localhost:2332/api/getUserAllCourses",{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if(response.data.message==="All courses fetched successfully"){
+            setEnrollCourses(response.data.enroll_Courses);
+            setTeachCourses(response.data.teach_Courses);}else{
+                alert("Please login again");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const user=JSON.parse(localStorage.getItem("user"));
+    return (
+        <div className="container mt-5">
+            <Navbar/>
+<h1>Online Learning Platform</h1>
+            <h2>Dashboard</h2>
+            <h4>
+Welcome, {user.name}</h4>
+{user.role===instructor?<div className="row"><h5>Courses You Are Teaching</h5>
+                {teachCourses.map((course) =>{return <Courses key={course._id} course_Props={course} 
+teachCoursesProps={teachCourses} tCoursesFunctionProps={setTeachCourses} />})}
+            </div>:null}
+<div className="row"><h5>Your Enrolled Courses</h5> {enrollCourses.map((course) =>{
+    return <Courses key={course._id} course_Props={course} />})}
+            </div>
+            </div>       
+    );
+}
+export default Dashboard;
