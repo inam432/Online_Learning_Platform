@@ -1,4 +1,4 @@
-const course_Info_Model=require("../models/courseInfo.js");
+const course_Info_Model=require("../Models/courseInfo.js");
 const getAllCourses=async(req, res)=>{
         const courses = await course_Info_Model.find({enroll_Email:null});
         res.status(200).json({courses,message:"All courses fetched successfully"});
