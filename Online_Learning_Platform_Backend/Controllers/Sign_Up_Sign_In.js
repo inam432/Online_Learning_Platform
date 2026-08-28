@@ -24,7 +24,7 @@ const signUp=async(req, res) => {
         });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    const signUpUser = new signUpModel({
+    const signUpUser = new Users_Info_Model({
         name,
         email,phone_Number,
         password:hashedPassword,role
