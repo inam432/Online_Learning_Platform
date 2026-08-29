@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 function SignIn() {
+  const navigate = useNavigate();
    let [email2,setEMAIL2]=useState("")
     let [password2,setPASSWORD2]=useState("")
     async function validateSignin(event){

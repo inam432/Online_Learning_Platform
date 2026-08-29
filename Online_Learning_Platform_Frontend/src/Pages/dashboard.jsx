@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Navbar from '../Components/navbar.jsx';
 import axios from "axios";
 function Dashboard() {
@@ -34,7 +35,7 @@ function Dashboard() {
             <h2>Dashboard</h2>
             <h4>
 Welcome, {user.name}</h4>
-{user.role===instructor?<div className="row"><h5>Courses You Are Teaching</h5>
+{user.role==="instructor"?<div className="row"><h5>Courses You Are Teaching</h5>
                 {teachCourses.map((course) =>{return <Courses key={course._id} course_Props={course} 
 teachCoursesProps={teachCourses} tCoursesFunctionProps={setTeachCourses} />})}
             </div>:null}
