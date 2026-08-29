@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from '../Components/navbar.jsx';
+import courseCard from '../Components/course_Card.jsx';
 import axios from "axios";
 function Dashboard() {
     const [enrollCourses,setEnrollCourses] = useState([]);
@@ -8,7 +9,7 @@ function Dashboard() {
 
     useEffect(() => {
         getCourses();
-    }, [teachCourses]);
+    }, []);
 
     const getCourses = async () => {
         try {
@@ -36,11 +37,11 @@ function Dashboard() {
             <h4>
 Welcome, {user.name}</h4>
 {user.role==="instructor"?<div className="row"><h5>Courses You Are Teaching</h5>
-                {teachCourses.map((course) =>{return <Courses key={course._id} course_Props={course} 
+                {teachCourses.map((course) =>{return <courseCard key={course._id} course_Props={course} 
 teachCoursesProps={teachCourses} tCoursesFunctionProps={setTeachCourses} />})}
             </div>:null}
 <div className="row"><h5>Your Enrolled Courses</h5> {enrollCourses.map((course) =>{
-    return <Courses key={course._id} course_Props={course} />})}
+    return <courseCard key={course._id} course_Props={course} />})}
             </div>
             </div>       
     );

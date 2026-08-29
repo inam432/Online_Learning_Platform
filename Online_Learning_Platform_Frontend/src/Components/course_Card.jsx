@@ -1,5 +1,5 @@
 import axios from "axios";
-function courseCard(props) {
+export default function courseCard(props) {
     let [viewLectures,setViewLectures]=useState(false)
     let user=JSON.parse(localStorage.getItem("user"));
     const token = JSON.parse(localStorage.getItem("token"));
@@ -53,5 +53,3 @@ Lecture Video: {lecture.videoUrl}
         </div>
     );
 }
-
-module.exports=courseCard;
