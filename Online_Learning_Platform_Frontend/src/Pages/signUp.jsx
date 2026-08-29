@@ -27,7 +27,7 @@ function SignUp() {
         (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{7,}$/.test(password))){
           e.preventDefault()
           const response = await axios.post(
-            "http://localhost:2332/api/signUp",
+            "https://online-learning-platform-19fq.onrender.com/api/signUp",
             {
               name,
               email,

@@ -12,7 +12,7 @@ function Dashboard() {
     const getCourses = async () => {
         try {
             const token = JSON.parse(localStorage.getItem("token"));
-            const response = await axios.get("http://localhost:2332/api/getUserAllCourses",{
+            const response = await axios.get("https://online-learning-platform-19fq.onrender.com/api/getUserAllCourses",{
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

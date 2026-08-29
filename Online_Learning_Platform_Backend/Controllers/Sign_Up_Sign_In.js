@@ -16,7 +16,7 @@ const generateToken = (user) => {
     );
 };
 const signUp=async(req, res) => {
-    const {name, email,phone_Number,password,role} = req.body;
+    const {name, email,phonenumber,password,role} = req.body;
     const existingUser = await Users_Info_Model.findOne({ email });
     if (existingUser) {
         return res.status(409).json({
@@ -26,7 +26,7 @@ const signUp=async(req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const signUpUser = new Users_Info_Model({
         name,
-        email,phone_Number,
+        email,phone_Number:phonenumber,
         password:hashedPassword,role
     });
 

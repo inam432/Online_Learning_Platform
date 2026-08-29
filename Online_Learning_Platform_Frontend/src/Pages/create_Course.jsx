@@ -36,7 +36,7 @@ function CreateCourse() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = JSON.parse(localStorage.getItem("token"));
-            const res=await axios.post("http://localhost:2332/api/createCourse", {
+            const res=await axios.post("https://online-learning-platform-19fq.onrender.com/api/createCourse", {
                 courseName,
                 lectures
             },{

@@ -4,7 +4,7 @@ function courseCard(props) {
     let user=JSON.parse(localStorage.getItem("user"));
     const token = JSON.parse(localStorage.getItem("token"));
     async function delete_Course(){
-        const response=axios.delete(`http://localhost:2332/api/deleteCourse/${props.course_Props._id}`,{
+        const response=axios.delete(`https://online-learning-platform-19fq.onrender.com/api/deleteCourse/${props.course_Props._id}`,{
             headers: {
                 Authorization: `Bearer ${token}`
             }
