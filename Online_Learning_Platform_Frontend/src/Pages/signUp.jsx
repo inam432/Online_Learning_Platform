@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom";
 function SignUp() {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     let [name,setNAME]=useState("")
     let [email,setEMAIL]=useState("")
     let [password,setPASSWORD]=useState("")
@@ -72,7 +73,7 @@ function SignUp() {
   <select id="role" className="form-select" onChange={(e) => setRole(e.target.value)} required>
                             <option value="student">Student</option>
                             <option value="instructor">Instructor</option>
-                        </select><br/><div><button className="btn btn-light">Sign Up
+                        </select><br/><div><button onClick={validateSignUp}className="btn btn-light">Sign Up
   </button><Link onClick={()=>{signUpFieldsEmpty();}} className="btn btn-light" to="/">Sign In</Link></div>
   </form>
                 </div>

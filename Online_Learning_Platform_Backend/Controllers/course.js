@@ -5,8 +5,8 @@ const getAllCourses=async(req, res)=>{
 };
 const getUserAllCourses=async(req, res)=>{
     const enroll_Courses=await course_Info_Model.find({enroll_Email:req.user.email});
-const teach_Courses=await course_Info_Model.find({enroll_Email:null,
-    instructor:{instructor_Email:req.user.email}});
+const teach_Courses=await course_Info_Model.find({enroll_Email:null,"instructor.instructor_Email":
+req.user.email});
     res.status(200).json({enroll_Courses,teach_Courses,message:"All courses fetched successfully"});
 };
 const getCourse=async(req, res)=>{
