@@ -56,7 +56,7 @@ if(response.data.message==="Course fetched successfully"){
             const token=JSON.parse(localStorage.getItem("token"));
 
        const response=await axios.put(
-                `https://online-learning-platform-19fq.onrender.com/api/updateCourse/${id}`,
+                `http://localhost:2332/api/updateCourse/${id}`,
                 {
                     courseName,
                     lectures
