@@ -19,7 +19,8 @@ const getCourse=async(req, res)=>{
 const enrollCourse=async(req, res)=>{
     try {
         const {courseName,instructor}=req.body;
-        const courseExist=await course_Info_Model.findOne({courseName,instructor});
+        const courseExist=await course_Info_Model.findOne({courseName,"instructor.instructor_Name":req.body.instructor.instructor_Name,
+        "instructor.instructor_Email": req.body.instructor.instructor_Email});
         if(courseExist!==null){
         const course=new course_Info_Model({
             courseName,instructor,enroll_Email:req.user.email
