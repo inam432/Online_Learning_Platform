@@ -57,7 +57,7 @@ const createCourse=async (req, res) => {
     };
     const deleteCourse = async (req, res) => {
         try {
-            const course = await course_Info_Model.findOne(req.params.id);
+            const course = await course_Info_Model.findOne({_id:req.params.id});
     
             if (!course) {
                 return res.status(404).json({
