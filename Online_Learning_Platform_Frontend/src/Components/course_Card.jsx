@@ -1,5 +1,7 @@
 import axios from "axios";
-export default function courseCard(props) {
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+export default function CourseCard(props) {
     let [viewLectures,setViewLectures]=useState(false)
     let user=JSON.parse(localStorage.getItem("user"));
     const token = JSON.parse(localStorage.getItem("token"));
@@ -35,7 +37,7 @@ export default function courseCard(props) {
                     <Link className="btn btn-primary" to="/editCourse">
                     Update Course
                     </Link></div>:null}
-                    {!viewLectures?<button className="btn btn-primary" onClick={setViewLectures(true)}>
+                    {!viewLectures?<button className="btn btn-primary" onClick={()=>{setViewLectures(true)}}>
                         View Lectures
                     </button>:null}
                     {viewLectures?<div>
