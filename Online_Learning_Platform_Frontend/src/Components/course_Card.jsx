@@ -46,7 +46,7 @@ Lecture Title: {lecture.title}<br/>Lecture Description: {lecture.description}<br
 Lecture Notes: {lecture.notes}<br/>
 Lecture Video: {lecture.videoUrl}
                         </p>})}
-                <button className="btn btn-primary" onClick={setViewLectures(false)}>
+                <button className="btn btn-primary" onClick={()=>{setViewLectures(false)}}>
                         Do Not Show Lectures
                     </button></div>:null}
                 </div>

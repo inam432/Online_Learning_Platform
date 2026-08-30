@@ -22,9 +22,8 @@ const enrollCourse=async(req, res)=>{
         const courseExist=await course_Info_Model.findOne({courseName,"instructor.instructor_Name":req.body.instructor.instructor_Name,
         "instructor.instructor_Email": req.body.instructor.instructor_Email});
         if(courseExist!==null){
-        const course=new course_Info_Model({
-            courseName,instructor,enroll_Email:req.user.email
-        });
+            courseExist.enroll_Email=req.user.email;
+        const course=new course_Info_Model(courseExist);
         await course.save();
         res.status(201).json({
             message: "Enrollment done",

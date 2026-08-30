@@ -26,15 +26,10 @@ function SignUp() {
           alert("Password should be 7 characters long with one uppercase letter,one lowercase letter and one special symbol");
         }if((/^[A-Za-z\s]{2,}$/.test(name))&&(emailRegex.test(email))&&(/^[0-9]{11}$/.test(phonenumber))&&
         (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{7,}$/.test(password))){
-          e.preventDefault()
+          e.preventDefault();
           const response = await axios.post(
             "https://online-learning-platform-19fq.onrender.com/api/signUp",
-            {
-              name,
-              email,
-              phonenumber,
-              password,role
-            }
+            {name, email,phonenumber,password,role}
         );
         if(response.data.message==='Signup Successful'){
           alert("Successful signup")
