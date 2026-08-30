@@ -16,8 +16,7 @@ const generateToken = (user) => {
     );
 };
 const signUp=async(req, res) => {
-    res.send(req.body);
-    /*const {name, email,phonenumber,password,role} = req.body;
+    const {name, email,phonenumber,password,role} = req.body;
     const existingUser = await Users_Info_Model.findOne({ email });
     if (existingUser) {
         return res.status(409).json({
@@ -37,7 +36,7 @@ const signUp=async(req, res) => {
         message: "Signup Successful",
         signUpUser
     });
-*/
+
 };
 const signIn=async(req, res) => {
 
