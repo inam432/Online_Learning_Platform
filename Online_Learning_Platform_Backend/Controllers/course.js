@@ -71,7 +71,7 @@ const createCourse=async (req, res) => {
                 });
             }
     
-            await course_Info_Model.deleteOne(req.params.id);
+            await course_Info_Model.deleteOne({_id:req.params.id});
     
             res.status(200).json({
                 message: "Course deleted successfully"
