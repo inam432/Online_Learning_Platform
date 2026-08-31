@@ -93,7 +93,7 @@ const updateCourse=async (req, res) => {
             return res.status(404).json({
                 message: "Course not found"
             });
-        }if (course.instructor.email !== req.user.email) {
+        }if (course.instructor.instructor_Email !== req.user.email) {
             return res.status(403).json({
                 message: "You can only update your own course"
             });
