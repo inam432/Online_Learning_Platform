@@ -65,7 +65,7 @@ const createCourse=async (req, res) => {
                 });
             }
     
-            if (course.instructor.email !== req.user.email) {
+            if (course.instructor.instructor_Email!== req.user.email) {
                 return res.status(403).json({
                     message: "You can only delete your own course"
                 });
