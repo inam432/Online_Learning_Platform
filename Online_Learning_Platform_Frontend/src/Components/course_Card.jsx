@@ -34,7 +34,7 @@ export default function CourseCard(props) {
                     <button className="btn btn-primary" onClick={delete_Course}>
                         Delete Course
                     </button>
-                    <Link className="btn btn-primary" to="/editCourse">
+                    <Link className="btn btn-primary" to={`/editCourse/${props.course_Props._id}`}>
                     Update Course
                     </Link></div>:null}
                     {!viewLectures?<button className="btn btn-primary" onClick={()=>{setViewLectures(true)}}>

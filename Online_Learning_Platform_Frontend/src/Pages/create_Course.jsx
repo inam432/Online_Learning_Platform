@@ -79,7 +79,7 @@ function CreateCourse() {
                             onChange={(e) =>
                                 handleLectureChange(index, e)
                             }
-                        />
+                            required/>
 <br/>
                         <textarea
                             className="form-control"

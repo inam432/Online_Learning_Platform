@@ -23,7 +23,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path="/create-course" element={<CreateCourse />} />
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/editCourse" element={<EditCourse />} />
+                <Route path="/editCourse/:id" element={<EditCourse />} />
             </Routes>
         </BrowserRouter>
   </StrictMode>,

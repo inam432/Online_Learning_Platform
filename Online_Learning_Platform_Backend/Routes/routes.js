@@ -11,7 +11,7 @@ router.post("/signUp", signUp);
 router.post("/signIn", signIn);
 router.get("/getAllCourses",token_Verification,getAllCourses);
 router.get("/getUserAllCourses",token_Verification,getUserAllCourses);
-router.get("/getCourse",token_Verification,user_Authorization,getCourse);
+router.get("/getCourse/:id",token_Verification,user_Authorization,getCourse);
 router.post("/createCourse",token_Verification,user_Authorization,createCourse);
 router.post("/enrollCourse",token_Verification,enrollCourse);
 router.put("/updateCourse/:id",token_Verification,user_Authorization,updateCourse);
