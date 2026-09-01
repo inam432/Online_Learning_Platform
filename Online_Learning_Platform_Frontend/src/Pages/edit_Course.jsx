@@ -56,7 +56,7 @@ if(response.data.message==="Course fetched successfully"){
             const token=JSON.parse(localStorage.getItem("token"));
 
        const response=await axios.put(
-                `http://localhost:2332/api/updateCourse/${id}`,
+                `https://online-learning-platform-19fq.onrender.com/api/updateCourse/${id}`,
                 {
                     courseName,
                     lectures
@@ -112,7 +112,7 @@ if(response.data.message==="Course updated successfully"){
                                 onChange={(e) =>
                                     handleLectureChange(index, e)
                                 }
-                            />
+                            required />
 
                             <textarea
                                 name="description"

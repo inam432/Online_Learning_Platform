@@ -24,18 +24,7 @@ function Courses() {
         }
     };
 
-    const deleteCourse = async (id) => {
-        try {
-            await api.delete(`/courses/${id}`);
-
-            setCourses(
-                courses.filter((course) => course._id !== id)
-            );
-
-        } catch (error) {
-            alert(error.response?.data?.message || "Delete failed");
-        }
-    };
+   
     const courseEnrollment=async(courseName,instructor)=>{
         const token = JSON.parse(localStorage.getItem("token"));
             const res=await axios.post("https://online-learning-platform-19fq.onrender.com/api/enrollCourse", {
