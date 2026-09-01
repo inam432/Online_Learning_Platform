@@ -66,6 +66,7 @@ function SignUp() {
   <input type="password" id="password" className="form-control" onChange={(e) => setPASSWORD(e.target.value)} required/>
   <br/><label>Role: &nbsp;</label>
   <select id="role" className="form-select" onChange={(e) => setRole(e.target.value)} required>
+  <option value="">Select Role</option>
                             <option value="student">Student</option>
                             <option value="instructor">Instructor</option>
                         </select><br/><div><button onClick={validateSignUp}className="btn btn-light">Sign Up
