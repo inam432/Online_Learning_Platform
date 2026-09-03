@@ -23,7 +23,9 @@ const enrollCourse=async(req, res)=>{
         "instructor.instructor_Email": req.body.instructor.instructor_Email});
         if(courseExist!==null){
             courseExist.enroll_Email=req.user.email;
-        const course=new course_Info_Model(courseExist);
+const course=new course_Info_Model({enroll_Email:courseExist.enroll_Email,courseName,instructor:{instructor_Name:req.user.name,instructor_Email:req.user.email},
+            lectures:courseExist.lectures,
+        });
         await course.save();
         res.status(201).json({
             message: "Enrollment done",
