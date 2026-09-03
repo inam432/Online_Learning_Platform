@@ -25,9 +25,9 @@ function EditCourse(){
 if(response.data.message==="Course fetched successfully"){
             setCourseName(response.data.course.courseName);
             setLectures(response.data.course.lectures);
-}else{alert("Please login again")}
-        } catch (error) {
+}}catch (error) {
             console.log(error);
+            alert("Failed to fetch course details. Please login again and then try to edit the course.");
         }
     };
 
@@ -52,6 +52,7 @@ if(response.data.message==="Course fetched successfully"){
     };
 
     const handleSubmit = async (e) => {
+        try{
         e.preventDefault();
             const token=JSON.parse(localStorage.getItem("token"));
 
@@ -69,7 +70,7 @@ if(response.data.message==="Course fetched successfully"){
             );
 if(response.data.message==="Course updated successfully"){  
             alert("Course updated successfully");
-}else{alert("Failed to update the course. Please login again and then try to update the course again.");}
+}}catch(error){alert("Failed to update the course. Please login again and then try to update the course again.");}
     };
     return (
         <div className="container"><Navbar/>

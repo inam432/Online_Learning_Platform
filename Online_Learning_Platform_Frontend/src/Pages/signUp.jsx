@@ -8,7 +8,8 @@ function SignUp() {
     let [password,setPASSWORD]=useState("")
     let [role,setRole]=useState("")
     let [phonenumber,setPHONENUMBER]=useState("")
-    async function validateSignUp(e){    
+    async function validateSignUp(e){
+      try{    
         if(!(/^[A-Za-z\s]{2,}$/.test(name))){
           e.preventDefault();
           alert("Your name should have more than one characters");
@@ -38,9 +39,9 @@ function SignUp() {
           document.getElementById("phoneNumber").value="";
           document.getElementById("password").value="";
           document.getElementById("role").value="";
-        }else{
+        }}}catch(error){
          alert("User with this email already exists. Please enter a different email"); 
-        }}}
+        }}
         function signUpFieldsEmpty(){
           document.getElementById("name").value="";
       document.getElementById("email").value="";
@@ -69,7 +70,7 @@ function SignUp() {
   <option value="">Select Role</option>
                             <option value="student">Student</option>
                             <option value="instructor">Instructor</option>
-                        </select><br/><div><button onClick={validateSignUp}className="btn btn-light">Sign Up
+                        </select><br/><div><button className="btn btn-light">Sign Up
   </button><Link onClick={()=>{signUpFieldsEmpty();}} className="btn btn-light" to="/">Sign In</Link></div>
   </form>
                 </div>

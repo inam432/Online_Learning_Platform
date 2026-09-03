@@ -26,6 +26,7 @@ function Dashboard() {
             }
         } catch (error) {
             console.log(error);
+            alert("Failed to fetch courses. Please login again.");
         }
     };
     const user=JSON.parse(localStorage.getItem("user"));
@@ -38,10 +39,10 @@ function Dashboard() {
 Welcome, {user.name}</h4>
 {user.role==="instructor"?<div className="row"><h5>Courses You Are Teaching</h5>
                 {teachCourses.map((course) =>{return <CourseCard key={course._id} course_Props={course} 
-teachCoursesProps={teachCourses} tCoursesFunctionProps={setTeachCourses} />})}
+teachCoursesProps={teachCourses} tCoursesFunctionProps={setTeachCourses} course_Type={"teach"}/>})}
             </div>:null}
 <div className="row"><h5>Your Enrolled Courses</h5> {enrollCourses.map((course) =>{
-    return <CourseCard key={course._id} course_Props={course} />})}
+    return <CourseCard key={course._id} course_Props={course} course_Type={"enroll"}/>})}
             </div>
             </div>       
     );

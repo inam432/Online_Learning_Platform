@@ -7,6 +7,7 @@ function SignIn() {
    let [email2,setEMAIL2]=useState("")
     let [password2,setPASSWORD2]=useState("")
     async function validateSignin(event){
+      try{
         event.preventDefault()
         const response = await axios.post(
           "https://online-learning-platform-19fq.onrender.com/api/signIn",
@@ -23,7 +24,7 @@ role:response.data.user.role}));
     document.getElementById("email2").value="";
     document.getElementById("password2").value="";
     navigate("/dashboard");
-  }else{
+  }}catch(error){
     alert("Login not successful. Please check your email and password and try again.");
   }
       }    

@@ -5,7 +5,7 @@ export default function CourseCard(props) {
     let [viewLectures,setViewLectures]=useState(false)
     let user=JSON.parse(localStorage.getItem("user"));
     const token = JSON.parse(localStorage.getItem("token"));
-    async function delete_Course(){
+    async function delete_Course(){try{
         const response=await axios.delete(`https://online-learning-platform-19fq.onrender.com/api/deleteCourse/${props.course_Props._id}`,{
             headers: {
                 Authorization: `Bearer ${token}`
@@ -16,7 +16,7 @@ export default function CourseCard(props) {
             props.tCoursesFunctionProps(
                 props.teachCoursesProps.filter((course) =>{return course._id !== props.course_Props._id})
             );
-        }else{alert("Course deletion failed");}
+        }}catch(error){alert("Course deletion failed. Please login again and then try to delete the course again");}
     }
     return (
         <div className="col-md-4">
@@ -30,7 +30,7 @@ export default function CourseCard(props) {
                     <p className="card-text">
                         Instructor Name: {props.course_Props.instructor.instructor_Name}<br/>
                         Instructor Email: {props.course_Props.instructor.instructor_Email}
-                    </p>{user.role==="instructor"?<div>
+                    </p>{user.role==="instructor"&&props.course_Type==="teach"?<div>
                     <button className="btn btn-primary" onClick={delete_Course}>
                         Delete Course
                     </button>

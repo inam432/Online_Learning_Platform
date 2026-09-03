@@ -3,7 +3,7 @@ import Navbar from '../Components/navbar.jsx';
 import axios from "axios";
 function Courses() {
     const [courses, setCourses] = useState([]);
-
+    let user=JSON.parse(localStorage.getItem("user"));
     useEffect(() => {
         getCourses();
     }, []);
@@ -16,16 +16,15 @@ function Courses() {
                     Authorization: `Bearer ${token}`
                 }
             });if(response.data.message==="All courses fetched successfully"){
-                setCourses(response.data.courses);}else{
-                    alert("Please login again");
-                }
+                setCourses(response.data.courses);}
         } catch (error) {
+            alert("Failed to fetch courses. Please login again.");
             console.log(error);
         }
     };
 
    
-    const courseEnrollment=async(courseName,instructor)=>{
+    const courseEnrollment=async(courseName,instructor)=>{try{
         const token = JSON.parse(localStorage.getItem("token"));
             const res=await axios.post("https://online-learning-platform-19fq.onrender.com/api/enrollCourse", {
                 courseName,instructor
@@ -36,8 +35,8 @@ function Courses() {
             });
             if(res.data.message==="Enrollment done"){
             alert("Enrollment done successfully");
-    }else{
-        alert("Enrollment failed");
+    }}catch(error){
+        alert("Enrollment failed. Please login again and then try again to enroll in the course");
     }};
 
     return (
@@ -57,7 +56,7 @@ function Courses() {
                                     Instructor Name: {course.instructor.instructor_Name}<br/>
                                     Instructor Email: {course.instructor.instructor_Email}
                                 </p>
-
+{user.email===course.instructor.instructor_Email?null:
                                 <button
                                     className="btn btn-light"
                                     onClick={() =>
@@ -66,7 +65,7 @@ courseEnrollment(course.courseName,{instructor_Name:course.instructor.instructor
                                     }
                                 >
                                     Enroll Now
-                                </button>
+                                </button>}
                             </div>
                         </div>
                     </div>

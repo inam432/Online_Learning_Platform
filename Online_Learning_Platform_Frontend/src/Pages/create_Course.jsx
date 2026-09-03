@@ -34,6 +34,7 @@ function CreateCourse() {
     };
 
     const handleSubmit = async (e) => {
+        try{
         e.preventDefault();
         const token = JSON.parse(localStorage.getItem("token"));
             const res=await axios.post("https://online-learning-platform-19fq.onrender.com/api/createCourse", {
@@ -46,8 +47,8 @@ function CreateCourse() {
             });
             if(res.data.message==="Course created"){
             alert("Course created successfully");
-    }else{
-        alert("Failed to create course");
+    }}catch(error){
+        alert("Failed to create course. Please login again and then try again to create the course");
     }};
 
     return (
