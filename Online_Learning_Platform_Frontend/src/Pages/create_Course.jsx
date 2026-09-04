@@ -113,7 +113,7 @@ function CreateCourse() {
                         /><br/>
                     </div>
                 ))}
-<br/>
+<br/><div style={{ display: "flex", gap: "20px",justifyContent: "center"}}>
                 <button
                     type="button"
                     className="btn btn-light"
@@ -124,7 +124,7 @@ function CreateCourse() {
 
                 <button className="btn btn-light">
                     Create Course
-                </button>
+                </button></div>
             </form>
         </div></div></div>
     );

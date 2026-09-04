@@ -70,8 +70,9 @@ function SignUp() {
   <option value="">Select Role</option>
                             <option value="student">Student</option>
                             <option value="instructor">Instructor</option>
-                        </select><br/><div><button className="btn btn-light">Sign Up
-  </button><Link onClick={()=>{signUpFieldsEmpty();}} className="btn btn-light" to="/">Sign In</Link></div>
+                        </select><br/><div style={{ display: "flex", gap: "20px",justifyContent: "center"}}>
+                          <button className="btn btn-light mx-5">Sign Up
+  </button><Link onClick={()=>{signUpFieldsEmpty();}} className="btn btn-light mx-5" to="/">Sign In</Link></div>
   </form>
                 </div>
 

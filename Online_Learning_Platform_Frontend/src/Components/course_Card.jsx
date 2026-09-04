@@ -30,13 +30,13 @@ export default function CourseCard(props) {
                     <p className="card-text">
                         Instructor Name: {props.course_Props.instructor.instructor_Name}<br/>
                         Instructor Email: {props.course_Props.instructor.instructor_Email}
-                    </p>{user.role==="instructor"&&props.course_Type==="teach"?<div>
+</p>{user.role==="instructor"&&props.course_Type==="teach"?<div style={{ display: "flex", gap: "20px",justifyContent: "center"}}>
                     <button className="btn btn-primary" onClick={delete_Course}>
                         Delete Course
                     </button>
                     <Link className="btn btn-primary" to={`/editCourse/${props.course_Props._id}`}>
                     Update Course
-                    </Link></div>:null}
+                    </Link></div>:null}<br/>
                     {!viewLectures?<button className="btn btn-primary" onClick={()=>{setViewLectures(true)}}>
                         View Lectures
                     </button>:null}

@@ -58,7 +58,7 @@ function Courses() {
                                 </p>
 {user.email===course.instructor.instructor_Email?null:
                                 <button
-                                    className="btn btn-light"
+                                    className="btn btn-primary"
                                     onClick={() =>
 courseEnrollment(course.courseName,{instructor_Name:course.instructor.instructor_Name,
     instructor_Email:course.instructor.instructor_Email})

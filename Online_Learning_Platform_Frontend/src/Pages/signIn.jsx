@@ -44,7 +44,7 @@ role:response.data.user.role}));
   <br/>
   <label>Password: &nbsp;</label>
   <input type="password" id="password2" className="form-control" onChange={(e) => setPASSWORD2(e.target.value)} required/>
-  <br/><div><button className="btn btn-light">Sign In
+  <br/><div style={{ display: "flex", gap: "20px",justifyContent: "center"}}><button className="btn btn-light">Sign In
   </button><Link onClick={()=>{signInFieldsEmpty();}} className="btn btn-light" to="/signup">Sign Up</Link></div>
   </form>
                 </div>

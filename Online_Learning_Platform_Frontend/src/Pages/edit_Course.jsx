@@ -150,10 +150,10 @@ if(response.data.message==="Course updated successfully"){
 
                     </div>
                 ))}
-
+<br/><div style={{ display: "flex", gap: "20px",justifyContent: "center"}}>
                 <button
                     type="button"
-                    className="btn btn-secondary me-2"
+                    className="btn btn-light"
                     onClick={addLecture}
                 >
                     Add Lecture
@@ -161,11 +161,11 @@ if(response.data.message==="Course updated successfully"){
 
                 <button
                     type="submit"
-                    className="btn btn-primary"
+                    className="btn btn-light"
                 >
                     Update Course
                 </button>
-
+</div>
             </form>
 </div></div>
         </div>
