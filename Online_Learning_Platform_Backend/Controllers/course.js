@@ -42,14 +42,13 @@ const course=new course_Info_Model({enroll_Email:courseExist.enroll_Email,course
 const createCourse=async (req, res) => {
         try {
             const {courseName,lectures} = req.body;
-    
             const course=new course_Info_Model({
                 courseName,instructor:{instructor_Name:req.user.name,instructor_Email:req.user.email},lectures
             });
             await course.save();
             res.status(201).json({
                 message: "Course created",
-                course
+                course,imageUrl: result.secure_url
             });
         } catch (error) {
             res.status(500).json({

@@ -6,6 +6,26 @@ function SignIn() {
   const navigate = useNavigate();
    let [email2,setEMAIL2]=useState("")
     let [password2,setPASSWORD2]=useState("")
+    async function handleGoogleSignIn(response) { 
+try { const result = await axios.post( "https://online-learning-platform-19fq.onrender.com/api/signInGoogle",
+       { credential: response.credential } );
+       if(response.data.message==='Google sign in successful'){
+        localStorage.setItem("token",JSON.stringify(response.data.token));
+    localStorage.setItem("user",JSON.stringify({name:response.data.user.name,email:response.data.user.email,
+    role:response.data.user.role}));
+        alert('Successful Login')
+        document.getElementById("email2").value="";
+        document.getElementById("password2").value="";
+        navigate("/dashboard");
+      }}catch(error){
+        alert("Login not successful.");
+      }
+          }    
+    useEffect(() => { if (window.google) { 
+      window.google.accounts.id.initialize({ client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+         callback: handleGoogleSignIn });
+          window.google.accounts.id.renderButton( document.getElementById("googleButton"),
+           { theme: "outline", size: "large", text: "signin_with" } ); } }, []);
     async function validateSignin(event){
       try{
         event.preventDefault()
@@ -46,7 +66,7 @@ role:response.data.user.role}));
   <input type="password" id="password2" className="form-control" onChange={(e) => setPASSWORD2(e.target.value)} required/>
   <br/><div style={{ display: "flex", gap: "20px",justifyContent: "center"}}><button className="btn btn-light">Sign In
   </button><Link onClick={()=>{signInFieldsEmpty();}} className="btn btn-light" to="/signup">Sign Up</Link></div>
-  </form>
+  </form><p style={{color:'white',fontSize:'25px'}}>OR</p> <div id="googleButton"></div>
                 </div>
 
             </div>

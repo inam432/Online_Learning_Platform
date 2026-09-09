@@ -8,8 +8,53 @@ function SignUp() {
     let [password,setPASSWORD]=useState("")
     let [role,setRole]=useState("")
     let [phonenumber,setPHONENUMBER]=useState("")
+    const [googleSignup, setGoogleSignup] = useState(false);
+  const [googleCredential, setGoogleCredential] = useState("");
+  useEffect(() => {
+    if (!window.google) return;
+
+    window.google.accounts.id.initialize({
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      callback: handleGoogleSignup
+    });
+
+    window.google.accounts.id.renderButton(
+      document.getElementById("googleButton"),
+      {
+        theme: "outline",
+        size: "large",
+        text: "signup_with"
+      }
+    );
+  }, [googleSignup]);
+  const handleGoogleSignup = (response) => {
+    const credential = response.credential;
+alert("Please enter your phone number and role and then click on sign up button to complete the signup process");
+    setGoogleCredential(credential);
+    setGoogleSignup(true);
+  };
     async function validateSignUp(e){
       try{    
+        if (googleSignup) {
+          e.preventDefault();
+          if (!(/^[0-9]{11}$/.test(phonenumber))) {
+            e.preventDefault();
+            alert("Phone number must be 11 digits");
+          }else{
+          let response = await axios.post(
+            "https://online-learning-platform-19fq.onrender.com/api/signUpGoogle",
+            {
+              credential: googleCredential,
+              phonenumber,
+              role
+            }
+          );
+          if(response.data.message==='Google signup successful'){
+            alert("Successful signup")
+            document.getElementById("phoneNumber").value="";
+            document.getElementById("role").value="";
+          }
+        }}else{
         if(!(/^[A-Za-z\s]{2,}$/.test(name))){
           e.preventDefault();
           alert("Your name should have more than one characters");
@@ -39,7 +84,7 @@ function SignUp() {
           document.getElementById("phoneNumber").value="";
           document.getElementById("password").value="";
           document.getElementById("role").value="";
-        }}}catch(error){
+        }}}}catch(error){
          alert("User with this email already exists. Please enter a different email"); 
         }}
         function signUpFieldsEmpty(){
@@ -56,24 +101,25 @@ function SignUp() {
                     <h5 className="card-title" style={{fontSize:'35px'}}>
                         Sign Up
                     </h5>
-                    <form onSubmit={validateSignUp}><label>Name: &nbsp;
+                    <form onSubmit={validateSignUp}>{!googleSignup?<><label>Name: &nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
           <input type="text" id="name" className="form-control" onChange={(e) => setNAME(e.target.value)} required/>
   <br/><label>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
   <input type="text" id="email" className="form-control" onChange={(e) => setEMAIL(e.target.value)} required/>
-  <br/><label>Phone Number: &nbsp;</label>
-  <input type="tel" id="phoneNumber" className="form-control" onChange={(e) => setPHONENUMBER(e.target.value)} required/><br/>
+  <br/>
   <label>Password: &nbsp;</label>
   <input type="password" id="password" className="form-control" onChange={(e) => setPASSWORD(e.target.value)} required/>
-  <br/><label>Role: &nbsp;</label>
+  <br/></>:null}<label>Phone Number: &nbsp;</label>
+  <input type="tel" id="phoneNumber" className="form-control" onChange={(e) => setPHONENUMBER(e.target.value)} required/><br/><label>Role: &nbsp;</label>
   <select id="role" className="form-select" onChange={(e) => setRole(e.target.value)} required>
   <option value="">Select Role</option>
                             <option value="student">Student</option>
                             <option value="instructor">Instructor</option>
                         </select><br/><div style={{ display: "flex", gap: "20px",justifyContent: "center"}}>
-                          <button className="btn btn-light mx-5">Sign Up
-  </button><Link onClick={()=>{signUpFieldsEmpty();}} className="btn btn-light mx-5" to="/">Sign In</Link></div>
-  </form>
+                          <button className="btn btn-light">Sign Up
+  </button><Link onClick={()=>{signUpFieldsEmpty();}} className="btn btn-light" to="/">Sign In</Link></div>
+  </form><p style={{color:'white',fontSize:'25px'}}>OR</p>{!googleSignup?<div id="googleButton"></div>:
+  <button onClick={()=>{setGoogleSignup(false)}}>Back to normal signup</button>}
                 </div>
 
             </div>
