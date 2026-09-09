@@ -136,7 +136,7 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     const googleId = payload.sub;
     const email = payload.email;
     const name = payload.name;
-    let user = await User.findOne({ email });
+    let user = await Users_Google_Info_Model.findOne({ email });
     if (!user) {
       return res.status(404).json({
         message: "Account with this email does not exist. Please sign up first."
