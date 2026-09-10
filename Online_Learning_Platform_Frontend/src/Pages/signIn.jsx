@@ -9,17 +9,21 @@ function SignIn() {
     async function handleGoogleSignIn(response) { 
 try { const result = await axios.post( "https://online-learning-platform-19fq.onrender.com/api/signInGoogle",
        { credential: response.credential } );
-       if(response.data.message==='Google sign in successful'){
-        localStorage.setItem("token",JSON.stringify(response.data.token));
-    localStorage.setItem("user",JSON.stringify({name:response.data.user.name,email:response.data.user.email,
-    role:response.data.user.role}));
+       if(result.data.message==='Google sign in successful'){
+        localStorage.setItem("token",JSON.stringify(result.data.token));
+    localStorage.setItem("user",JSON.stringify({name:result.data.user.name,email:result.data.user.email,
+    role:result.data.user.role}));
         alert('Successful Login')
         document.getElementById("email2").value="";
         document.getElementById("password2").value="";
         navigate("/dashboard");
       }}catch(error){
+if(error.response.data.message==='Account with this email does not exist. Please sign up first.'){
+          alert("Account with this email does not exist. Please sign up first.");
+        }
+        else{
         alert("Login not successful.");
-      }
+      }}
           }    
     useEffect(() => { if (window.google) { 
       window.google.accounts.id.initialize({ client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
