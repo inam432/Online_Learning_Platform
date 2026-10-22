@@ -10,7 +10,6 @@ function Dashboard() {
     useEffect(() => {
         getCourses();
     }, []);
-
     const getCourses = async () => {
         try {
             const token = JSON.parse(localStorage.getItem("token"));
@@ -37,14 +36,18 @@ function Dashboard() {
             <h2>Dashboard</h2>
             <h4>
 Welcome, {user.name}</h4>
-{user.role==="instructor"?<div className="row"><h5>Courses You Are Teaching</h5>
-                {teachCourses.map((course) =>{return <CourseCard key={course._id} course_Props={course} 
-teachCoursesProps={teachCourses} tCoursesFunctionProps={setTeachCourses} course_Type={"teach"}/>})}
-            </div>:null}
-<div className="row"><h5>Your Enrolled Courses</h5> {enrollCourses.map((course) =>{
-    return <CourseCard key={course._id} course_Props={course} course_Type={"enroll"}/>})}
-            </div>
-            </div>       
+{user.role==="instructor"?<div className="row"><div className="card">
+<div className="card-header"><h2>Courses You Are Teaching</h2></div><div className="card-body">
+                {teachCourses.length!==0?teachCourses.map((course) =>{return <CourseCard key={course._id} course_Props={course} 
+teachCoursesProps={teachCourses} tCoursesFunctionProps={setTeachCourses} course_Type={"teach"}/>}):<h5 style={{textAlign:"center",color:"lightgray"}}>You are not teaching any courses yet.</h5>}
+            </div></div></div>:null}<br/>
+<div className="row"><div className="card">
+<div className="card-header"><h2>Your Enrolled Courses</h2></div><div className="card-body">
+ {enrollCourses.length!==0?enrollCourses.map((course) =>{
+    return <CourseCard key={course._id} course_Props={course} course_Type={"enroll"}/>}):
+    <h5 style={{textAlign:"center",color:"lightgray"}}>You are not enrolled in any courses yet.</h5>}
+            </div></div>
+            </div></div>       
     );
 }
 export default Dashboard;
