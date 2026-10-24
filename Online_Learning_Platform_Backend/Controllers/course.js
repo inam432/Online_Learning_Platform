@@ -49,7 +49,7 @@ const createCourse=async (req, res) => {
             await course.save();
             res.status(201).json({
                 message: "Course created",
-                course,imageUrl: result.secure_url
+                course
             });
         } catch (error) {
             res.status(500).json({
